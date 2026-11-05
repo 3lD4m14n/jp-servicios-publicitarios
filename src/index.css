@@ -1,0 +1,128 @@
+@import '@fontsource-variable/archivo/standard.css';
+@import '@fontsource-variable/archivo/standard-italic.css';
+@import '@fontsource-variable/montserrat/wght.css';
+@import '@fontsource-variable/montserrat/wght-italic.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'tailwindcss';
+
+/*
+ * Los valores viven en src/theme/colors.js. Se borra la paleta por defecto de Tailwind
+ * para que ningún componente use un color fuera del tema.
+ */
+@theme inline {
+  --color-*: initial;
+  --color-ink-deep: var(--ink-deep);
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-line: var(--line);
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-silver: var(--silver);
+  --color-silver-dark: var(--silver-dark);
+  --color-muted: var(--muted);
+  --color-cyan: var(--cyan);
+  --color-magenta: var(--magenta);
+  --color-yellow: var(--yellow);
+  --color-key: var(--key);
+
+  --font-display: 'Archivo Variable', 'Arial Narrow', sans-serif;
+  --font-sans: 'Montserrat Variable', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background: var(--ink-deep);
+  }
+  body {
+    background: var(--ink-deep);
+    color: var(--paper);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+  :focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Titulares: la cursiva ancha y pesada del logo. */
+  .type-display {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 900;
+    font-stretch: 125%;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+  }
+  /* Anotaciones técnicas, como las marcas al margen de un pliego. */
+  .type-slug {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  /* El corte inclinado de las letras JP. */
+  .shape-slant {
+    clip-path: polygon(35% 0, 100% 0, 65% 100%, 0 100%);
+  }
+  .btn {
+    @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 px-7 py-3 text-sm font-bold italic transition-[background-color,color,translate] duration-200 hover:-translate-y-0.5;
+    clip-path: polygon(0.8rem 0, 100% 0, calc(100% - 0.8rem) 100%, 0 100%);
+  }
+  .btn:focus-visible {
+    outline-offset: -5px;
+    outline-color: var(--magenta);
+  }
+  .btn-primary {
+    @apply bg-yellow text-ink-deep hover:bg-paper;
+  }
+  .btn-ghost {
+    @apply bg-ink-raised text-paper hover:bg-line;
+  }
+  .metal {
+    background: linear-gradient(
+      115deg,
+      var(--silver-dark) 0%,
+      var(--paper) 22%,
+      var(--silver) 44%,
+      var(--paper) 58%,
+      var(--silver-dark) 100%
+    );
+  }
+  .slanted-panel {
+    clip-path: polygon(1.5rem 0, 100% 0, 100% calc(100% - 1.5rem), calc(100% - 1.5rem) 100%, 0 100%, 0 1.5rem);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes sign-on {
+  0%, 12%, 20% { opacity: 0.55; }
+  8%, 16%, 100% { opacity: 1; }
+}
+@keyframes spin-roll {
+  to { transform: rotate(360deg); }
+}
+@keyframes bed-pass {
+  0%, 100% { left: 6%; }
+  50% { left: 84%; }
+}
+
+.animate-marquee { animation: marquee 34s linear infinite; }
+.animate-sign-on { animation: sign-on 1.1s ease-out both; }
+.animate-roll { animation: spin-roll 5s linear infinite; }
+.animate-bed { animation: bed-pass 3.2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee, .animate-sign-on, .animate-roll, .animate-bed { animation: none; }
+}
