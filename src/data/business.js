@@ -1,12 +1,13 @@
 /**
- * Datos de la empresa. `null` = no se pudo leer en la foto del cartel; completar con el cliente.
+ * Datos de la empresa, leídos de las fotos del cartel. `null` = no figura en el cartel; completar con el cliente.
  * La interfaz se adapta sola: al completar un valor aparece en la sección de contacto.
  */
 export const BUSINESS = {
   name: 'JP Servicios Publicitarios',
   email: 'jp_publicitaria@hotmail.com',
-  phone: null, // En el cartel empieza con "09…", el resto lo tapa el árbol.
-  whatsapp: null, // Solo dígitos con código de país, p. ej. '5959XXXXXXXX'.
+  phone: '0986 291 279', // Tal como se muestra.
+  phoneIntl: '+595986291279', // Para enlaces tel:.
+  whatsapp: '595986291279', // Celular del cartel. Solo dígitos con código de país.
   address: null,
   hours: null,
 }
@@ -17,11 +18,13 @@ const extra = 'Papelería'
 
 export const TECH_FILTERS = ['Todo', eco, uv, extra]
 
-// Eco solvente y UV: columnas del cartel. Papelería: pedido explícito (flyers).
+// Solvente / eco solvente y UV: columnas del cartel. Papelería: pedido explícito (flyers).
 export const PRODUCTS = [
   { id: 'gigantografias', name: 'Gigantografías', tech: eco, note: 'Tu mensaje a escala de fachada.' },
   { id: 'carteles', name: 'Carteles', tech: eco, note: 'Para el frente del local y la calle.' },
   { id: 'letras', name: 'Letras corpóreas', tech: eco, note: 'Tu marca con volumen real.' },
+  { id: 'banner', name: 'Banner', tech: eco, note: 'Lona impresa para eventos, ferias y promociones.' },
+  { id: 'plotter', name: 'Plotter', tech: eco, note: 'Corte de vinilo adhesivo para vidrieras y superficies lisas.' },
   { id: 'flyers', name: 'Flyers', tech: extra, note: 'Para repartir de mano en mano.' },
   { id: 'rollo', name: 'Rollo a rollo', tech: uv, note: 'Impresión UV continua sobre material flexible.' },
   { id: 'cama', name: 'Cama plana', tech: uv, note: 'Impresión UV directa sobre planchas rígidas.' },
@@ -34,6 +37,8 @@ export const TICKER_ITEMS = [
   'Carteles',
   'Letras corpóreas',
   'Gigantografías',
+  'Banner',
+  'Plotter',
   'Flyers',
   'Rollo a rollo',
   'Cama plana',
@@ -45,7 +50,7 @@ export const TICKER_ITEMS = [
 export const PRINT_STEPS = [
   { plate: 'C', color: 'var(--cyan)', title: 'La idea', text: 'Medidas, material y lugar donde va a estar. Con eso se empieza.' },
   { plate: 'M', color: 'var(--magenta)', title: 'El archivo', text: 'Se revisa el diseño y se prepara para imprimir sin sorpresas.' },
-  { plate: 'Y', color: 'var(--yellow)', title: 'La impresión', text: 'Eco solvente o UV, según el material y el uso que va a tener.' },
+  { plate: 'Y', color: 'var(--yellow)', title: 'La impresión', text: 'Solvente, eco solvente 1440 o UV, según el material y el uso que va a tener.' },
   { plate: 'K', color: 'var(--silver)', title: 'La terminación', text: 'Cortado, revisado y listo para su lugar.' },
 ]
 

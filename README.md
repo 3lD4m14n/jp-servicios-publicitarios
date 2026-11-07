@@ -17,7 +17,7 @@ npm run build   # genera dist/
 
 ## Antes de publicar de verdad
 
-- Completar teléfono, dirección y horario, y confirmar los textos del catálogo y del proceso.
+- Completar dirección y horario (no figuran en el cartel), y confirmar los textos del catálogo y del proceso.
 - Quitar `<meta name="robots" content="noindex">` de `index.html`.
 - Quitar la nota "Prototipo" del pie en `src/components/Contact.jsx`.
 

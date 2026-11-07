@@ -47,6 +47,46 @@ function Letras() {
   )
 }
 
+function Banner() {
+  return (
+    <div className="absolute inset-0 flex items-start justify-center pt-6">
+      <div className="absolute inset-x-8 top-6 h-1 bg-silver-dark" />
+      <div className="relative mt-1 flex h-28 w-48 origin-top flex-col justify-center gap-2 bg-magenta px-5 transition-transform duration-700 group-hover:[transform:perspective(400px)_rotateX(-12deg)]">
+        {['left-1.5 top-1.5', 'right-1.5 top-1.5', 'bottom-1.5 left-1.5', 'bottom-1.5 right-1.5'].map((position) => (
+          <i key={position} className={`absolute size-2 rounded-full border-2 border-silver bg-ink-deep ${position}`} />
+        ))}
+        <span className="type-display text-2xl text-paper">Gran oferta</span>
+        <span className="h-1.5 w-2/3 bg-yellow" />
+      </div>
+    </div>
+  )
+}
+
+function Plotter() {
+  return (
+    <svg viewBox="0 0 240 120" className="absolute inset-0 m-auto w-[80%]" aria-hidden="true">
+      <rect x="10" y="20" width="220" height="80" fill="var(--yellow)" />
+      <text
+        x="120"
+        y="78"
+        textAnchor="middle"
+        fontSize="46"
+        letterSpacing="3"
+        fontWeight="900"
+        fontStyle="italic"
+        fontFamily="var(--font-sans)"
+        fill="none"
+        stroke="var(--ink-deep)"
+        strokeWidth="2"
+        strokeDasharray="9 4"
+        className="animate-cut"
+      >
+        VINILO
+      </text>
+    </svg>
+  )
+}
+
 function Flyers() {
   const sheets = [
     ['bg-yellow', '-rotate-12 group-hover:-translate-x-10 group-hover:-rotate-[20deg]'],
@@ -151,6 +191,8 @@ export const SAMPLES = {
   gigantografias: Gigantografias,
   carteles: Carteles,
   letras: Letras,
+  banner: Banner,
+  plotter: Plotter,
   flyers: Flyers,
   rollo: RolloARollo,
   cama: CamaPlana,

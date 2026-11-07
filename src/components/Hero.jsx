@@ -97,7 +97,7 @@ export default function Hero() {
           <CropMark className="bottom-3 left-3" />
           <CropMark className="bottom-3 right-3" />
 
-          <p className="type-slug px-12 pt-5 text-paper">Impresión eco solvente + UV</p>
+          <p className="type-slug px-12 pt-5 text-paper">Impresión solvente · eco solvente 1440 · UV</p>
 
           <div className="px-4 py-10 md:px-12">
             <motion.h1
@@ -111,7 +111,7 @@ export default function Hero() {
 
           <div className="flex flex-col gap-6 px-4 pb-14 md:flex-row md:items-end md:justify-between md:px-12">
             <p className="max-w-xl text-lg font-medium italic leading-snug text-paper md:text-xl">
-              Carteles, letras corpóreas, gigantografías y flyers. Impresión UV sobre PVC, coroplast y acrílico.
+              Carteles, letras corpóreas, gigantografías, banners, plotter y flyers. Impresión UV sobre PVC, alto impacto, coroplast y acrílico.
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="#arma-tu-cartel" className="btn btn-primary">Armar mi cartel</a>

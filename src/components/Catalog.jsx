@@ -8,12 +8,14 @@ const SPANS = {
   gigantografias: 'sm:col-span-2 lg:col-span-4',
   carteles: 'lg:col-span-2',
   letras: 'lg:col-span-2',
+  banner: 'lg:col-span-2',
+  plotter: 'lg:col-span-2',
   flyers: 'lg:col-span-2',
-  rollo: 'sm:col-span-2 lg:col-span-2',
-  cama: 'sm:col-span-2 lg:col-span-3',
-  pvc: 'lg:col-span-1',
-  coroplast: 'lg:col-span-1',
-  acrilico: 'sm:col-span-2 lg:col-span-1',
+  rollo: 'lg:col-span-2',
+  cama: 'sm:col-span-2 lg:col-span-2',
+  pvc: 'lg:col-span-2',
+  coroplast: 'lg:col-span-2',
+  acrilico: 'sm:col-span-2 lg:col-span-2',
 }
 
 export default function Catalog() {

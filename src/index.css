@@ -117,12 +117,17 @@
   50% { left: 84%; }
 }
 
+@keyframes cut-path {
+  to { stroke-dashoffset: -90; }
+}
+
 .animate-marquee { animation: marquee 34s linear infinite; }
 .animate-sign-on { animation: sign-on 1.1s ease-out both; }
 .animate-roll { animation: spin-roll 5s linear infinite; }
 .animate-bed { animation: bed-pass 3.2s ease-in-out infinite; }
+.animate-cut { animation: cut-path 4s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-marquee, .animate-sign-on, .animate-roll, .animate-bed { animation: none; }
+  .animate-marquee, .animate-sign-on, .animate-roll, .animate-bed, .animate-cut { animation: none; }
 }

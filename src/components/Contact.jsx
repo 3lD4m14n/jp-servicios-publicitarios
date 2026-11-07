@@ -18,7 +18,7 @@ function Row({ label, value, href }) {
 }
 
 export default function Contact() {
-  const { email, phone, whatsapp, address, hours } = BUSINESS
+  const { email, phone, phoneIntl, whatsapp, address, hours } = BUSINESS
   return (
     <>
       <section id="contacto" className="bg-ink">
@@ -46,8 +46,8 @@ export default function Contact() {
             <h2 className="type-display mt-3 text-[2.15rem] min-[400px]:text-5xl md:text-6xl">Hablemos de tu próximo cartel</h2>
             <dl className="mt-8">
               <Row label="Email" value={email} href={`mailto:${email}`} />
-              <Row label="Teléfono" value={phone} href={phone ? `tel:${phone}` : null} />
-              {whatsapp && <Row label="WhatsApp" value={whatsapp} href={`https://wa.me/${whatsapp}`} />}
+              <Row label="Teléfono" value={phone} href={phone ? `tel:${phoneIntl}` : null} />
+              {whatsapp && <Row label="WhatsApp" value="Escríbenos por WhatsApp" href={`https://wa.me/${whatsapp}`} />}
               <Row label="Dirección" value={address} />
               <Row label="Horario" value={hours} />
             </dl>

@@ -196,6 +196,7 @@ export default function SignBuilder() {
       ].join('\n'),
     [text, width, height, area, material, color],
   )
+  const whatsapp = BUSINESS.whatsapp ? `https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}` : null
   const mailto = `mailto:${BUSINESS.email}?subject=${encodeURIComponent('Cotización de cartel')}&body=${encodeURIComponent(message)}`
 
   const copy = async () => {
@@ -301,7 +302,14 @@ export default function SignBuilder() {
               </div>
             </dl>
             <div className="flex flex-wrap gap-2">
-              <a href={mailto} className="btn btn-primary">Pedir cotización</a>
+              {whatsapp && (
+                <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                  Pedir por WhatsApp
+                </a>
+              )}
+              <a href={mailto} className={`btn ${whatsapp ? 'btn-ghost' : 'btn-primary'}`}>
+                {whatsapp ? 'Por email' : 'Pedir cotización'}
+              </a>
               <button type="button" onClick={copy} className="btn btn-ghost" aria-live="polite">
                 {copied ? 'Copiado' : 'Copiar pedido'}
               </button>
