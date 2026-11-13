@@ -3,6 +3,9 @@ import { animate, motion, useMotionTemplate, useMotionValue, useSpring, useTrans
 import HalftoneField from './HalftoneField.jsx'
 
 const SPRING = { stiffness: 90, damping: 16 }
+const SMALL_QUERY = '(max-width: 639px)'
+// En móvil la letra es más estrecha para que el titular quepa con buen tamaño.
+const stretchFor = (small) => (small ? 76 : 125)
 
 /** Una tinta fuera de registro: la misma línea, desplazada según el puntero. */
 function InkPlate({ children, color, x, y }) {
@@ -44,39 +47,34 @@ export default function Hero() {
   const rawY = useMotionValue(0)
   const mx = useSpring(rawX, SPRING)
   const my = useSpring(rawY, SPRING)
-  // Al cargar, las tintas llegan muy separadas y se acomodan; el titular se estira como una lona.
+  // Al cargar, las tintas llegan muy separadas y se acomodan. El ancho de la letra arranca
+  // ya en su valor final para que el titular no cambie de tamaño al terminar de cargar.
   const spread = useMotionValue(9)
-  const stretch = useMotionValue(70)
+  const stretch = useMotionValue(stretchFor(window.matchMedia(SMALL_QUERY).matches))
   const fontVariationSettings = useMotionTemplate`"wdth" ${stretch}`
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const small = window.matchMedia('(max-width: 639px)')
-    let running = []
-    // En móvil la letra es más estrecha para que el titular quepa con buen tamaño.
+    const small = window.matchMedia(SMALL_QUERY)
+    let running
     const settle = () => {
-      const target = small.matches ? { spread: 0.45, stretch: 76 } : { spread: 1, stretch: 125 }
-      if (reduced) {
-        spread.set(target.spread)
-        stretch.set(target.stretch)
-        return
-      }
-      running.forEach((animation) => animation.stop())
-      running = [
-        animate(spread, target.spread, { duration: 1.5, ease: [0.16, 1, 0.3, 1] }),
-        animate(stretch, target.stretch, { duration: 1.2, ease: [0.16, 1, 0.3, 1] }),
-      ]
+      stretch.set(stretchFor(small.matches))
+      const target = small.matches ? 0.45 : 1
+      running?.stop()
+      if (reduced) spread.set(target)
+      else running = animate(spread, target, { duration: 1.5, ease: [0.16, 1, 0.3, 1] })
     }
     settle()
     small.addEventListener('change', settle)
     return () => {
       small.removeEventListener('change', settle)
-      running.forEach((animation) => animation.stop())
+      running?.stop()
     }
   }, [spread, stretch])
 
   const onPointerMove = (event) => {
-    if (event.pointerType === 'touch') return
+    // Solo con ratón: en pantallas táctiles el efecto quedaba trabado donde se tocó.
+    if (event.pointerType !== 'mouse') return
     const rect = event.currentTarget.getBoundingClientRect()
     rawX.set(((event.clientX - rect.left) / rect.width - 0.5) * 2)
     rawY.set(((event.clientY - rect.top) / rect.height - 0.5) * 2)

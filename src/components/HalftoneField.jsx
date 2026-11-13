@@ -73,6 +73,8 @@ export default function HalftoneField({ className = '' }) {
     }
 
     const onPointer = (event) => {
+      // Solo con ratón: con el dedo la mancha quedaba fija donde se tocó por última vez.
+      if (event.pointerType !== 'mouse') return
       const rect = canvas.getBoundingClientRect()
       pointer.x = event.clientX - rect.left
       pointer.y = event.clientY - rect.top
